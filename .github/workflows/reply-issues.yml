@@ -1,0 +1,20 @@
+name: Reply to issues and pull requests
+
+on:
+  issue_comment: {}
+  pull_request_review_comment: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Reply to comment
+        run: |
+          echo "Thanks for your comment!" >> comment.txt
+
+      - name: Add comment to issue or pull request
+        run: |
+          gh issue comment $ISSUE_NUMBER --body "$(cat comment.txt)"
