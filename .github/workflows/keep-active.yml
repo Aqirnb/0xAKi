@@ -1,0 +1,27 @@
+name: Keep GitHub Active
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 每天UTC时间的午夜执行
+
+jobs:
+  keep-active:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Create Issue
+      run: gh issue create -t "Daily Activity" -b "Performing daily GitHub activity." -L "bug"
+
+    - name: Update File
+      run: echo "GitHub Actions keep me active!" >> active.txt
+
+    - name: Commit and Push
+      run: |
+        git config --global user.email "chianggoo@gmail.com"
+        git config --global user.name "Aqirnb"
+        git add .
+        git commit -m "Daily GitHub Activity"
+        git push
