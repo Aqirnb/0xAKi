@@ -1,0 +1,22 @@
+name: Update README
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Update README
+        run: |
+          echo "### New feature added!" >> README.md
+
+      - name: Commit and push changes
+        run: |
+          git add README.md
+          git commit -m "Update README"
+          git push
