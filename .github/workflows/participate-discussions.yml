@@ -1,0 +1,23 @@
+name: Participate in discussions
+
+on:
+  discussion: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Like discussion
+        run: |
+          gh discussion like $DISCUSSION_ID
+
+      - name: Reply to discussion
+        run: |
+          echo "Great discussion!" >> comment.txt
+
+      - name: Add comment to discussion
+        run: |
+          gh discussion comment $DISCUSSION_ID --body "$(cat comment.txt)"
