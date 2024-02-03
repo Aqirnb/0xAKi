@@ -1,0 +1,22 @@
+name: Daily commit
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Add a new file
+        run: |
+          echo "Hello, world!" > hello.txt
+
+      - name: Commit and push changes
+        run: |
+          git add hello.txt
+          git commit -m "Daily commit"
+          git push
