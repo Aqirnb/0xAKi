@@ -1,0 +1,28 @@
+name: Random Update
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Generate random code
+        run: |
+          echo "This is a random code: $(openssl rand -base64 12)" >> README.md
+
+      - name: Add changes
+        run: |
+          git add .
+
+      - name: Commit changes
+        run: |
+          git commit -m "Random update"
+
+      - name: Push changes
+        run: |
+          git push
