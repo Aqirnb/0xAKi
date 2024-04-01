@@ -1,0 +1,23 @@
+# .github/workflows/sync.yml
+name: Sync Fork
+
+on:
+  schedule:
+    # 每3小时同步一次
+    - cron: '*/3 * * * *'
+  workflow_dispatch:
+
+jobs:
+  sync_with_upstream:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Sync with upstream
+        uses: TG908/fork-sync@v1.6.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ORIGINAL_OWNER
+          head: main
+          base: main
