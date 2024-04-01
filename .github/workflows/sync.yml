@@ -4,7 +4,7 @@ name: Sync Fork
 on:
   schedule:
     # 每3小时同步一次
-    - cron: '*/3 * * * *'
+    - cron: '0 4 * * *'
   workflow_dispatch:
 
 jobs:
@@ -18,6 +18,6 @@ jobs:
         uses: TG908/fork-sync@v1.6.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          owner: ORIGINAL_OWNER
+          owner: XC0703
           head: main
           base: main
