@@ -1,7 +1,0 @@
-import random
-
-# 生成包含10个随机整数的列表，范围在1到100之间
-random_numbers = [random.randint(1, 100) for _ in range(10)]
-
-# 打印生成的随机数列表
-print("随机生成的数字列表:", random_numbers)
