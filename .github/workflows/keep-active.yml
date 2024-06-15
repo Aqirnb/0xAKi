@@ -4,6 +4,7 @@ on:
   schedule:
     # 每天凌晨1点运行
     - cron: '0 1 * * *'
+  workflow_dispatch: # 添加手动触发
 
 jobs:
   build:
