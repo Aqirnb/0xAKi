@@ -1,0 +1,24 @@
+name: Keep Active
+
+on:
+  schedule:
+    # 每天凌晨1点运行
+    - cron: '0 1 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Create or update a file
+      run: |
+        DATE=$(date)
+        echo "Last update: $DATE" > last-update.txt
+        git config --global user.name "Aqirnb"
+        git config --global user.email "chianggoo@gmail.com"
+        git add last-update.txt
+        git commit -m "Keep alive - $DATE"
+        git push
